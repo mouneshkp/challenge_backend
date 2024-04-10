@@ -30,6 +30,7 @@ def add_transaction():
     with open('transactions.json', 'w') as data_file:
         json.dump(transactions_data, data_file, indent=4)
     
+    print(f"Added transaction with ID: {new_id}")
     return jsonify({"message": "Transaction added successfully"}), 201
 
 @transaction_blueprint.route('/transaction/<id>', methods=['PUT'])
@@ -42,6 +43,7 @@ def update_transaction(id):
         with open('transactions.json', 'w') as data_file:
             json.dump(transactions_data, data_file, indent=4)
         
+        print(f"Updated transaction with ID: {id}")
         return jsonify({"message": "Transaction updated successfully"}), 200
     else:
         return jsonify({"error": "Transaction not found"}), 404
@@ -51,10 +53,11 @@ def delete_transaction(id):
     transactions_data = load_transactions()
     if id in transactions_data:
         del transactions_data[id]
-
+    
         with open('transactions.json', 'w') as data_file:
             json.dump(transactions_data, data_file, indent=4)
         
+        print(f"Deleted transaction with ID: {id}")
         return jsonify({"message": "Transaction deleted successfully"}), 200
     else:
         return jsonify({"error": "Transaction not found"}), 404
@@ -63,3 +66,10 @@ def delete_transaction(id):
 def get_all_transactions():
     transactions_data = load_transactions()
     return jsonify(transactions_data), 200
+
+# Run the Flask app
+if __name__ == "__main__":
+    from flask import Flask
+    app = Flask(__name__)
+    app.register_blueprint(transaction_blueprint, url_prefix="/api")
+    app.run(debug=True)

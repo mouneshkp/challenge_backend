@@ -4,9 +4,9 @@ import json
 
 def perform_google_search(query: str) -> str:
     base_url = 'https://www.google.com/search'
-    params = {'q': query}
+    params = {'q': query, 'gl': 'us'}  # Add 'gl' parameter for the United States
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36'  # Updated User-Agent
     }
     response = requests.get(base_url, params=params, headers=headers)
     response.raise_for_status()

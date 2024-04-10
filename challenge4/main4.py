@@ -29,7 +29,7 @@ def save_extracted_data(data: dict, output_file: str):
         json.dump(data, json_file, indent=4)
 
 def main():
-    pdf_path = 'input.pdf' 
+    pdf_path = 'challenge4\input.pdf' 
     output_file = 'output.json' 
     
     extracted_data = extract_information_and_tables(pdf_path)
@@ -40,3 +40,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+print("hii")

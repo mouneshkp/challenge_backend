@@ -21,7 +21,7 @@ def get_third_highest_frequency(frequencies: List[Tuple[int, int]]) -> Tuple[int
     return frequencies[2]
 
 def main():
-    numbers = load_data('data.json')
+    numbers = load_data('challenge2\data.json')
     frequencies = calculate_frequency(numbers)
     
     try:
